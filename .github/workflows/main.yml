@@ -14,6 +14,7 @@ jobs:
   build:
     name: Build
     runs-on: ${{ matrix.os }}
+    if: false
     strategy:
       fail-fast: false
       matrix:
@@ -349,7 +350,7 @@ jobs:
   sdist:
     name: Python SDist
     runs-on: ubuntu-latest
-    if: github.repository == 'AcademySoftwareFoundation/MaterialX'
+    if: github.repository == 'howetuft/MaterialX'
     outputs:
       sdist_filename: ${{ steps.generate.outputs.filename }}
 
@@ -360,7 +361,7 @@ jobs:
     - name: Install Python
       uses: actions/setup-python@v5
       with:
-        python-version: 3.11
+        python-version: 3.12
 
     - name: Build SDist
       id: generate
@@ -379,7 +380,7 @@ jobs:
     name: Python Wheels
     runs-on: ${{ matrix.os }}
     needs: ['sdist']
-    if: github.repository == 'AcademySoftwareFoundation/MaterialX'
+    if: github.repository == 'howetuft/MaterialX'
     strategy:
       fail-fast: false
       matrix:
